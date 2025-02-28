@@ -271,7 +271,7 @@ mod tests {
             let mut last_price = if ascending { 0 } else { i64::MAX };
             for order in bookside.iter_all_including_invalid(0, Some(oracle_price_lots)) {
                 let price = order.price_lots;
-                println!("{} {:?} {price}", order.node.key, order.handle.order_tree);
+                // println!("{} {:?} {price}", order.node.key, order.handle.order_tree);
                 if ascending {
                     assert!(price >= last_price);
                 } else {
