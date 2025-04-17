@@ -245,9 +245,13 @@ impl Market {
         oracle_b_acc: Option<&impl KeyedAccountReader>,
         slot: u64,
     ) -> Result<Option<I80F48>> {
-        if self.oracle_a.is_some() && self.oracle_b.is_some() {
+        if self.oracle_a.is_some()
+            && self.oracle_b.is_some()
+            && oracle_a_acc.is_some()
+            && oracle_b_acc.is_some()
+        {
             self.oracle_price_from_a_and_b(oracle_a_acc.unwrap(), oracle_b_acc.unwrap(), slot)
-        } else if self.oracle_a.is_some() {
+        } else if self.oracle_a.is_some() && oracle_a_acc.is_some() {
             self.oracle_price_from_a(oracle_a_acc.unwrap(), slot)
         } else {
             Ok(None)
