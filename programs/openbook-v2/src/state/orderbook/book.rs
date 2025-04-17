@@ -160,12 +160,12 @@ impl<'a> Orderbook<'a> {
                 break;
             }
             if post_only {
-                msg!("Order could not be placed due to PostOnly");
+                //msg!("Order could not be placed due to PostOnly");
                 post_target = None;
                 break; // return silently to not fail other instructions in tx
             }
             if limit == 0 {
-                msg!("Order matching limit reached");
+                //msg!("Order matching limit reached");
                 post_target = None;
                 break;
             }
@@ -362,11 +362,11 @@ impl<'a> Orderbook<'a> {
         }
 
         if is_oracle_peg && side.is_price_better(price_lots, order.peg_limit()) {
-            msg!(
+            /*msg!(
                 "Posting on book disallowed due to peg_limit, order price {:?}, limit {:?}",
                 price_lots,
                 order.peg_limit(),
-            );
+            );*/
             post_target = None;
         }
 
@@ -522,7 +522,7 @@ impl<'a> Orderbook<'a> {
             }
 
             if limit == 0 {
-                msg!("Cancel orders limit reached");
+                //msg!("Cancel orders limit reached");
                 break;
             }
 
@@ -539,10 +539,10 @@ impl<'a> Orderbook<'a> {
                 // It's possible for the order to be filled or expired already.
                 // There will be an event on the heap, the perp order slot is freed once
                 // it is processed.
-                msg!(
+                /*msg!(
                     "order {} was not found on orderbook, expired or filled already",
                     order_id
-                );
+                );*/
             } else {
                 total_quantity += cancel_result?.quantity;
             }
