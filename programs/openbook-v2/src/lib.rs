@@ -175,7 +175,7 @@ pub mod openbook_v2 {
         let time_in_force = match Order::tif_from_expiry(place_order.expiry_timestamp) {
             Some(t) => t,
             None => {
-                msg!("Order is already expired");
+                //msg!("Order is already expired");
                 return Ok(None);
             }
         };

@@ -84,13 +84,13 @@ impl OracleState {
                 .saturating_add(config.max_staleness_slots as u64)
                 < now_slot
         {
-            msg!(
+            /*msg!(
                 "Oracle is stale; pubkey {}, price: {}, last_update_slot: {}, now_slot: {}",
                 oracle_pk,
                 self.price,
                 self.last_update_slot,
                 now_slot,
-            );
+            );*/
             true
         } else {
             false
@@ -99,13 +99,13 @@ impl OracleState {
 
     pub fn has_valid_confidence(&self, oracle_pk: &Pubkey, config: &OracleConfig) -> bool {
         if self.deviation > config.conf_filter * self.price {
-            msg!(
+            /*msg!(
                 "Oracle confidence not good enough: pubkey {}, price: {}, deviation: {}, conf_filter: {}",
                 oracle_pk,
                 self.price,
                 self.deviation,
                 config.conf_filter,
-            );
+            );*/
             false
         } else {
             true
@@ -123,11 +123,11 @@ impl OracleState {
         let relative_target_var = config.conf_filter.powi(2);
 
         if relative_var > relative_target_var {
-            msg!(
+            /*msg!(
                 "Combined confidence too high: computed^2: {}, conf_filter^2: {}",
                 relative_var,
                 relative_target_var
-            );
+            );*/
             false
         } else {
             true
